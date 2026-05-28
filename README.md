@@ -1,35 +1,28 @@
-# Pratik Butani - Portfolio Website
+# Pratik Butani | Engineering Lead & Product Architect
 
 ## Overview
-This repository contains the source code for Pratik Butani's personal portfolio website. The website showcases Pratik's skills, experience, and projects as an Engineering Lead specializing in Android and Flutter Development.
+This repository contains the source code for Pratik Butani's premium personal brand website. Repositioned as a **Product Engineering Leader**, the site showcases Pratik's 12+ years of expertise in mobile technologies, engineering leadership, and AI-assisted development workflows.
 
-## About Pratik
-Pratik Butani is an Engineering Lead with over a decade of experience in mobile technologies. He's ranked among the Top 100 Users in India and Top 10 Users in Gujarat as highest reputation holder on StackOverflow. Currently working at 7Span in Ahmedabad, he leads mobile development teams and critical Flutter projects.
+## Profile Summary
+Pratik Butani is an Engineering Lead managing a high-performance team of 20+ mobile developers. With a focus on **Product Engineering**, **Mobile Architecture**, and **AI-Assisted Development**, he helps startups and scale-ups build robust, scalable mobile systems. 
 
-## Social Links
-- [LinkedIn](https://www.linkedin.com/in/pratikbutani/)
-- [Twitter](https://twitter.com/pratik13butani)
-- [Medium](https://pratikbutani.medium.com/)
-- [Play Store](https://play.google.com/store/apps/developer?id=Pratik+Butani)
-- [Facebook](https://www.facebook.com/pratikbutani)
-- [Instagram](https://instagram.com/pratikbuts)
+- **Ranked Top 100 in India** on StackOverflow (60K+ Reputation).
+- **Engineering Lead** at 7Span.
+- **GDG Cloud Rajkot** Marketing & Communication Lead.
 
 ## Website Features
-This portfolio website includes the following sections:
-- Home
-- About
-- Resume
-- Portfolio
-- Services
-- Contact
+- **Hero:** Premium positioning for Engineering Leadership.
+- **Impact Metrics:** Quantifiable achievements (12+ Years, 20+ Team, 65+ Projects).
+- **Selected Product Experience:** In-depth case studies for high-impact projects (Zacta, KOOPS, etc.).
+- **AI-Assisted Engineering:** Documentation of modern AI-first development workflows (Cursor, Claude, Manus).
+- **Services:** Repositioned for leadership and technical strategy.
+- **Opportunities:** Focus on leadership roles in Ahmedabad or Remote.
 
 ## Technologies Used
-The website is built using:
-- HTML5
-- CSS3
-- JavaScript
-- Bootstrap
-- Various libraries including AOS, Swiper, GlightBox, and more
+- HTML5, CSS3 (Inter & Raleway typography)
+- JavaScript (AOS, Swiper, GlightBox)
+- Bootstrap 5
+- Modernized CSS with premium gradients and shadows
 
 ## License
 Copyright © Pratik Butani. All Rights Reserved.

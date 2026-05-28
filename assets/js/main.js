@@ -8,6 +8,19 @@
   "use strict";
 
   /**
+   * Scroll Restoration
+   */
+  if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+  }
+
+  window.addEventListener('load', () => {
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+  });
+
+  /**
    * Easy selector helper function
    */
   const select = (el, all = false) => {
@@ -44,18 +57,43 @@
    * Navbar links active state on scroll
    */
   let navbarlinks = select('#navbar .scrollto', true)
+  let menuTimeout = null
+  let currentActive = null
+
   const navbarlinksActive = () => {
-    let position = window.scrollY + 200
+    let position = 200 // Threshold from top of viewport
+    let activeLink = null
+
     navbarlinks.forEach(navbarlink => {
       if (!navbarlink.hash) return
       let section = select(navbarlink.hash)
       if (!section) return
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+
+      let rect = section.getBoundingClientRect()
+
+      if (rect.top <= position && rect.bottom >= position) {
         navbarlink.classList.add('active')
+        activeLink = navbarlink
       } else {
         navbarlink.classList.remove('active')
+        navbarlink.classList.remove('show-text')
       }
     })
+
+    if (activeLink && activeLink !== currentActive) {
+      currentActive = activeLink
+
+      // Clear existing timeout
+      if (menuTimeout) clearTimeout(menuTimeout)
+
+      // Show text
+      activeLink.classList.add('show-text')
+
+      // Hide after 2 seconds
+      menuTimeout = setTimeout(() => {
+        activeLink.classList.remove('show-text')
+      }, 2000)
+    }
   }
   window.addEventListener('load', navbarlinksActive)
   onscroll(document, navbarlinksActive)
@@ -64,7 +102,9 @@
    * Scrolls to an element with header offset
    */
   const scrollto = (el) => {
-    let elementPos = select(el).offsetTop
+    let section = select(el)
+    if (!section) return
+    let elementPos = window.scrollY + section.getBoundingClientRect().top
     window.scrollTo({
       top: elementPos,
       behavior: 'smooth'
@@ -136,20 +176,20 @@
   }
 
   /**
-   * Hero type effect
+   * Hero type effect - Disabled for premium feel
    */
-  const typed = select('.typed')
-  if (typed) {
-    let typed_strings = typed.getAttribute('data-typed-items')
-    typed_strings = typed_strings.split(',')
-    new Typed('.typed', {
-      strings: typed_strings,
-      loop: true,
-      typeSpeed: 100,
-      backSpeed: 50,
-      backDelay: 2000
-    });
-  }
+  // const typed = select('.typed')
+  // if (typed) {
+  //   let typed_strings = typed.getAttribute('data-typed-items')
+  //   typed_strings = typed_strings.split(',')
+  //   new Typed('.typed', {
+  //     strings: typed_strings,
+  //     loop: true,
+  //     typeSpeed: 100,
+  //     backSpeed: 50,
+  //     backDelay: 2000
+  //   });
+  // }
 
   /**
    * Skills animation
@@ -248,6 +288,43 @@
       clickable: true
     }
   });
+
+  /**
+   * Theme Toggle
+   */
+  const themeToggle = select('#theme-toggle')
+  if (themeToggle) {
+    const themeIcon = themeToggle.querySelector('i')
+
+    // Force Light Mode if no theme is saved
+    let savedTheme = localStorage.getItem('theme')
+    if (!savedTheme) {
+      savedTheme = 'light'
+      localStorage.setItem('theme', 'light')
+    }
+
+    document.documentElement.setAttribute('data-theme', savedTheme)
+    updateThemeIcon(savedTheme)
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme')
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light'
+
+      document.documentElement.setAttribute('data-theme', newTheme)
+      localStorage.setItem('theme', newTheme)
+      updateThemeIcon(newTheme)
+    })
+
+    function updateThemeIcon(theme) {
+      if (theme === 'dark') {
+        themeIcon.classList.remove('bx-moon')
+        themeIcon.classList.add('bx-sun')
+      } else {
+        themeIcon.classList.remove('bx-sun')
+        themeIcon.classList.add('bx-moon')
+      }
+    }
+  }
 
   /**
    * Animation on scroll
