@@ -19,6 +19,7 @@
   --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
   --premium-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
   --glass-bg: rgba(255, 255, 255, 0.8);
+  --hero-fade-rgb: 255, 255, 255;
   --glass-blur: blur(12px);
   --radius-lg: 24px;
   --radius-md: 16px;
@@ -34,6 +35,7 @@
   --text-muted: #64748b;
   --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   --glass-bg: rgba(15, 23, 42, 0.8);
+  --hero-fade-rgb: 15, 23, 42;
   --glass-blur: blur(16px);
 }
 
@@ -211,17 +213,56 @@ a:hover {
 #hero {
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(var(--glass-bg), var(--glass-bg)), url("../img/hero-bg.jpg") center center no-repeat;
-  background-size: cover;
+  background: rgb(var(--hero-fade-rgb));
   position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   padding: 120px 0 60px 0;
   z-index: 1;
 }
 
+/* Speaking photo on the right, fading into the page colour behind the text */
+#hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: url("../img/hero-speaking-bw.jpg") 72% 30% / cover no-repeat;
+  z-index: -2;
+}
+
+#hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(var(--hero-fade-rgb), 0.88);
+  z-index: -1;
+}
+
 @media (min-width: 992px) {
   #hero { padding-left: 100px; }
+}
+
+/* Narrower laptops: wrap the headline earlier so it stays clear of the photo */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  section#hero { padding-left: 140px; }
+  section#hero h1 { max-width: 620px; font-size: 50px; }
+  section#hero p { max-width: 560px; }
+  section#hero .cta-buttons { max-width: 640px; }
+}
+
+@media (min-width: 1200px) {
+  #hero::after {
+    background: linear-gradient(90deg,
+      rgb(var(--hero-fade-rgb)) 0%,
+      rgb(var(--hero-fade-rgb)) 30%,
+      rgba(var(--hero-fade-rgb), 0.85) 50%,
+      rgba(var(--hero-fade-rgb), 0.35) 68%,
+      rgba(var(--hero-fade-rgb), 0.1) 100%);
+  }
 }
 
 #hero h1 {
@@ -398,6 +439,14 @@ section { padding: 120px 0; }
 # Selected Product Experience
 --------------------------------------------------------------*/
 .case-study-content h4 { font-size: 24px; margin-bottom: 16px; }
+.app-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
 .case-study-tag {
   font-size: 11px;
   font-weight: 800;

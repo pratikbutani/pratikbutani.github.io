@@ -13,7 +13,7 @@ Pratik Butani is an Engineering Lead managing a high-performance team of 20+ mob
 ## Website Features
 - **Hero:** Premium positioning for Engineering Leadership.
 - **Impact Metrics:** Quantifiable achievements (12+ Years, 20+ Team, 65+ Projects).
-- **Selected Product Experience:** In-depth case studies for high-impact projects (Zacta, KOOPS, etc.).
+- **Selected Product Experience:** In-depth case studies for high-impact projects (Vepaar, KOOPS, etc.).
 - **AI-Assisted Engineering:** Documentation of modern AI-first development workflows (Cursor, Claude, Manus).
 - **Services:** Repositioned for leadership and technical strategy.
 - **Opportunities:** Focus on leadership roles in Ahmedabad or Remote.

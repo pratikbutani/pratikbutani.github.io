@@ -20,8 +20,10 @@
   <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:title" content="Pratik Butani | Product Engineering Leader">
   <meta property="og:description" content="Helping product teams and founders build scalable mobile products with 12+ years of experience.">
-  <meta property="og:image" content="https://pratikbutani.github.io/assets/img/profile-img.jpg">
-  <meta property="og:url" content="https://pratikbutani.github.io/">
+  <meta property="og:image" content="https://pratikbutani.com/assets/img/og-banner.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://pratikbutani.com/">
   <meta property="og:type" content="website">
   
   <!-- Twitter Card Meta Tags -->
@@ -29,10 +31,10 @@
   <meta name="twitter:site" content="@pratik13butani">
   <meta name="twitter:title" content="Pratik Butani | Mobile Tech Strategist">
   <meta name="twitter:description" content="Engineering Leader specializing in scaling mobile products from MVP to high-performance systems.">
-  <meta name="twitter:image" content="https://pratikbutani.github.io/assets/img/profile-img.jpg">
+  <meta name="twitter:image" content="https://pratikbutani.com/assets/img/og-banner.jpg">
   
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://pratikbutani.github.io/">
+  <link rel="canonical" href="https://pratikbutani.com/">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -47,7 +49,7 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/style.css?v=5" rel="stylesheet">
   
   <!-- Structured Data / JSON-LD -->
   <script type="application/ld+json">
@@ -56,8 +58,8 @@
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Pratik Butani",
-        "url": "https://pratikbutani.github.io/",
-        "image": "https://pratikbutani.github.io/assets/img/profile-img.jpg",
+        "url": "https://pratikbutani.com/",
+        "image": "https://pratikbutani.com/assets/img/profile-img.jpg",
         "sameAs": [
           "https://www.linkedin.com/in/pratikbutani/",
           "https://twitter.com/pratik13butani",
@@ -96,6 +98,7 @@
         <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
         <li><a href="#case-studies" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Case Studies</span></a></li>
         <li><a href="#ai-workflows" class="nav-link scrollto"><i class="bx bx-chip"></i> <span>AI Workflows</span></a></li>
+        <li><a href="#personal-apps" class="nav-link scrollto"><i class="bx bx-mobile-alt"></i> <span>Personal Apps</span></a></li>
         <li><a href="#rapid-mvps" class="nav-link scrollto"><i class="bx bx-bolt-circle"></i> <span>Rapid MVPs</span></a></li>
         <li><a href="#community" class="nav-link scrollto"><i class="bx bx-group"></i> <span>Community</span></a></li>
         <li><a href="#open-for" class="nav-link scrollto"><i class="bx bx-door-open"></i> <span>Open For</span></a></li>
@@ -136,7 +139,7 @@
 
         <div class="row">
           <div class="col-lg-4">
-            <img src="assets/img/profile-img.jpg" class="img-fluid rounded-4 shadow-lg" alt="Pratik Butani">
+            <img src="assets/img/profile-img.jpg?v=3" class="img-fluid rounded-4 shadow-lg" alt="Pratik Butani" width="1000" height="1000">
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content">
             <h3>Strategic Execution & Scalable Systems</h3>
@@ -264,35 +267,10 @@
 
         <div class="section-title">
           <h2>Selected Project Experience</h2>
-          <p>Strategic case studies focusing on architecture, leadership, and business outcomes.</p>
+          <p>A few products I have led or built at work, and what was hard about each one.</p>
         </div>
 
         <div class="row">
-
-          <!-- Case Study: Zacta -->
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="case-study-card">
-              <div class="case-study-content">
-                <div class="case-study-header">
-                  <span class="case-study-tag">FinTech | SaaS</span>
-                </div>
-                <h4>Zacta</h4>
-                <p class="problem"><strong>Business Problem:</strong> Fragmented group expense tracking and manual friction in receipt management.</p>
-                <p><strong>Technical Challenge:</strong> High-accuracy OCR data extraction and real-time state synchronization.</p>
-                <div class="case-study-meta">
-                  <div class="case-study-meta-item">
-                    <span class="case-study-meta-label">Architecture</span>
-                    <span class="case-study-meta-value">Clean Architecture with Bloc & OCR Engine integration.</span>
-                  </div>
-                  <div class="case-study-meta-item">
-                    <span class="case-study-meta-label">Impact</span>
-                    <span class="case-study-meta-value">40% increase in user retention through automation.</span>
-                  </div>
-                </div>
-                <div class="mt-3"><small class="text-muted"><strong>Stack:</strong> Flutter, Firebase, Cloud Vision API</small></div>
-              </div>
-            </div>
-          </div>
 
           <!-- Case Study: Vepaar -->
           <div class="col-lg-4 col-md-6 mb-4">
@@ -301,20 +279,27 @@
                 <div class="case-study-header">
                   <span class="case-study-tag">E-commerce | B2B</span>
                 </div>
-                <h4>Vepaar</h4>
-                <p class="problem"><strong>Business Problem:</strong> Empowering small businesses to manage orders via WhatsApp integration.</p>
-                <p><strong>Technical Challenge:</strong> Supporting thousands of concurrent storefronts with heavy asset loading.</p>
+                <div class="d-flex align-items-center mb-3">
+                  <img src="assets/img/apps/vepaar.png" alt="Vepaar app icon" class="app-icon me-3" width="56" height="56" loading="lazy">
+                  <h4 class="mb-0">Vepaar</h4>
+                </div>
+                <p class="problem"><strong>Business Problem:</strong> Small businesses selling over WhatsApp had no simple way to run a catalogue, take orders and keep track of customers.</p>
+                <p><strong>Technical Challenge:</strong> Keeping the app fast for stores with large catalogues and a lot of product images.</p>
                 <div class="case-study-meta">
                   <div class="case-study-meta-item">
                     <span class="case-study-meta-label">Leadership</span>
-                    <span class="case-study-meta-value">Led the mobile engineering strategy for 100K+ merchants.</span>
+                    <span class="case-study-meta-value">Led mobile engineering for a product used by 100K+ merchants.</span>
                   </div>
                   <div class="case-study-meta-item">
                     <span class="case-study-meta-label">Impact</span>
-                    <span class="case-study-meta-value">Enabled digital transformation for small businesses globally.</span>
+                    <span class="case-study-meta-value">A merchant can set up an online store and start taking orders from their phone.</span>
                   </div>
                 </div>
                 <div class="mt-3"><small class="text-muted"><strong>Stack:</strong> Flutter, REST APIs, WebSocket</small></div>
+                <div class="mt-3">
+                  <a href="https://play.google.com/store/apps/details?id=com.whatshash" target="_blank" rel="noopener" class="me-3"><i class="bx bxl-play-store"></i> Google Play</a>
+                  <a href="https://vepaar.com" target="_blank" rel="noopener"><i class="bx bx-link-external"></i> vepaar.com</a>
+                </div>
               </div>
             </div>
           </div>
@@ -326,20 +311,27 @@
                 <div class="case-study-header">
                   <span class="case-study-tag">Lifestyle | Social</span>
                 </div>
-                <h4>DateDish</h4>
-                <p class="problem"><strong>Business Problem:</strong> Real-time matching and social interactions for dating.</p>
-                <p><strong>Technical Challenge:</strong> Managing complex real-time states and low-latency messaging.</p>
+                <div class="d-flex align-items-center mb-3">
+                  <img src="assets/img/apps/datedish.png" alt="DateDish app icon" class="app-icon me-3" width="56" height="56" loading="lazy">
+                  <h4 class="mb-0">DateDish</h4>
+                </div>
+                <p class="problem"><strong>Business Problem:</strong> Meeting someone from a dating app is risky when you can't tell if the profile is real.</p>
+                <p><strong>Technical Challenge:</strong> Selfie and ID verification, plus a date proposal flow where nothing is confirmed until both people agree.</p>
                 <div class="case-study-meta">
                   <div class="case-study-meta-item">
                     <span class="case-study-meta-label">Architecture</span>
-                    <span class="case-study-meta-value">Reactive architecture to handle high peak traffic.</span>
+                    <span class="case-study-meta-value">Real-time updates over Socket.io for proposals and messages.</span>
                   </div>
                   <div class="case-study-meta-item">
                     <span class="case-study-meta-label">Impact</span>
-                    <span class="case-study-meta-value">Zero-lag UX even during high user concurrent sessions.</span>
+                    <span class="case-study-meta-value">Shipped on both Android and iOS.</span>
                   </div>
                 </div>
                 <div class="mt-3"><small class="text-muted"><strong>Stack:</strong> Flutter, Node.js, Socket.io</small></div>
+                <div class="mt-3">
+                  <a href="https://play.google.com/store/apps/details?id=com.datedish.app" target="_blank" rel="noopener" class="me-3"><i class="bx bxl-play-store"></i> Google Play</a>
+                  <a href="https://datedish.com" target="_blank" rel="noopener"><i class="bx bx-link-external"></i> datedish.com</a>
+                </div>
               </div>
             </div>
           </div>
@@ -351,13 +343,13 @@
                 <div class="case-study-header">
                   <span class="case-study-tag">Media | Entertainment</span>
                 </div>
-                <h4>Audio Streaming</h4>
-                <p class="problem"><strong>Business Problem:</strong> Direct artist-to-listener low-latency streaming platform.</p>
-                <p><strong>Technical Challenge:</strong> Custom audio player implementation with complex buffer management.</p>
+                <h4>Live Audio Broadcasting</h4>
+                <p class="problem"><strong>Business Problem:</strong> DJs, musicians and talk hosts wanted to go live in proper audio quality, straight to their followers.</p>
+                <p><strong>Technical Challenge:</strong> A custom player for live and replayed broadcasts that keeps playing in the background and recovers on a bad network.</p>
                 <div class="case-study-meta">
                   <div class="case-study-meta-item">
                     <span class="case-study-meta-label">Strategy</span>
-                    <span class="case-study-meta-value">Optimized background processing for uninterrupted playback.</span>
+                    <span class="case-study-meta-value">Tuned background playback and buffering so streams don't cut out.</span>
                   </div>
                   <div class="case-study-meta-item">
                     <span class="case-study-meta-label">Impact</span>
@@ -377,12 +369,12 @@
                   <span class="case-study-tag">Pharma | Enterprise</span>
                 </div>
                 <h4>Pharma Ecosystem</h4>
-                <p class="problem"><strong>Business Problem:</strong> Fragmented supply chain and field tracking for distribution.</p>
-                <p><strong>Technical Challenge:</strong> Offline-first data synchronization in low-connectivity areas.</p>
+                <p class="problem"><strong>Business Problem:</strong> Distributors, retailers and field salesmen were juggling phone calls, paper orders and a separate ERP.</p>
+                <p><strong>Technical Challenge:</strong> Order booking that works without network and syncs with the ERP once the phone is back online.</p>
                 <div class="case-study-meta">
                   <div class="case-study-meta-item">
                     <span class="case-study-meta-label">Architecture</span>
-                    <span class="case-study-meta-value">Robust synchronization engine with local persistence.</span>
+                    <span class="case-study-meta-value">Local SQLite store on the device with a background sync engine.</span>
                   </div>
                   <div class="case-study-meta-item">
                     <span class="case-study-meta-label">Impact</span>
@@ -401,13 +393,16 @@
                 <div class="case-study-header">
                   <span class="case-study-tag">Enterprise | Sales</span>
                 </div>
-                <h4>KOOPS</h4>
-                <p class="problem"><strong>Business Problem:</strong> Real-time visibility into salesperson activities and order pipelines.</p>
-                <p><strong>Technical Challenge:</strong> High-precision GPS tracking and offline order management.</p>
+                <div class="d-flex align-items-center mb-3">
+                  <img src="assets/img/apps/koops.png" alt="KOOPS app icon" class="app-icon me-3" width="56" height="56" loading="lazy">
+                  <h4 class="mb-0">KOOPS</h4>
+                </div>
+                <p class="problem"><strong>Business Problem:</strong> Companies could not see where their field sales team was or which orders were coming in.</p>
+                <p><strong>Technical Challenge:</strong> Reliable GPS tracking through the working day, and order booking that works offline.</p>
                 <div class="case-study-meta">
                   <div class="case-study-meta-item">
                     <span class="case-study-meta-label">Leadership</span>
-                    <span class="case-study-meta-value">Architected the real-time tracking system.</span>
+                    <span class="case-study-meta-value">Designed and built the live tracking system.</span>
                   </div>
                   <div class="case-study-meta-item">
                     <span class="case-study-meta-label">Impact</span>
@@ -415,6 +410,10 @@
                   </div>
                 </div>
                 <div class="mt-3"><small class="text-muted"><strong>Stack:</strong> Android, Kotlin, Google Maps</small></div>
+                <div class="mt-3">
+                  <a href="https://play.google.com/store/apps/details?id=in.koops.sales" target="_blank" rel="noopener" class="me-3"><i class="bx bxl-play-store"></i> Google Play</a>
+                  <a href="https://www.koops.in" target="_blank" rel="noopener"><i class="bx bx-link-external"></i> koops.in</a>
+                </div>
               </div>
             </div>
           </div>
@@ -426,73 +425,31 @@
                 <div class="case-study-header">
                   <span class="case-study-tag">Networking | Smart Tech</span>
                 </div>
-                <h4>Tapomo</h4>
-                <p class="problem"><strong>Business Problem:</strong> Modernizing professional networking through NFC-enabled digital business cards.</p>
-                <p><strong>Technical Challenge:</strong> Seamless NFC write/read workflows and cross-platform profile sharing.</p>
+                <div class="d-flex align-items-center mb-3">
+                  <img src="assets/img/apps/tapomo.png" alt="Tapomo app icon" class="app-icon me-3" width="56" height="56" loading="lazy">
+                  <h4 class="mb-0">Tapomo</h4>
+                </div>
+                <p class="problem"><strong>Business Problem:</strong> Paper business cards run out, get lost and go out of date.</p>
+                <p><strong>Technical Challenge:</strong> Writing and reading NFC cards, and sharing a profile by tap, QR code or link on both platforms.</p>
                 <div class="case-study-meta">
                   <div class="case-study-meta-item">
                     <span class="case-study-meta-label">Architecture</span>
-                    <span class="case-study-meta-value">Secure decentralized profile management system.</span>
+                    <span class="case-study-meta-value">One profile link behind every card, so details can be updated without reprinting.</span>
                   </div>
                   <div class="case-study-meta-item">
                     <span class="case-study-meta-label">Impact</span>
-                    <span class="case-study-meta-value">Eliminated paper waste and improved lead conversion for users.</span>
+                    <span class="case-study-meta-value">Live on Android and iOS. Users share as many cards as they like with nothing to print.</span>
                   </div>
                 </div>
                 <div class="mt-3"><small class="text-muted"><strong>Stack:</strong> Flutter, NFC Core, Deep Linking</small></div>
+                <div class="mt-3">
+                  <a href="https://play.google.com/store/apps/details?id=com.tapomo" target="_blank" rel="noopener" class="me-3"><i class="bx bxl-play-store"></i> Google Play</a>
+                  <a href="https://tapomo.com" target="_blank" rel="noopener"><i class="bx bx-link-external"></i> tapomo.com</a>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Case Study: Livvy -->
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="case-study-card">
-              <div class="case-study-content">
-                <div class="case-study-header">
-                  <span class="case-study-tag">Real Estate | SaaS</span>
-                </div>
-                <h4>Livvy</h4>
-                <p class="problem"><strong>Business Problem:</strong> Streamlining residential management and tenant communication.</p>
-                <p><strong>Technical Challenge:</strong> Centralized real-time ticketing and notification system.</p>
-                <div class="case-study-meta">
-                  <div class="case-study-meta-item">
-                    <span class="case-study-meta-label">Strategy</span>
-                    <span class="case-study-meta-value">Implemented automated escalation workflows.</span>
-                  </div>
-                  <div class="case-study-meta-item">
-                    <span class="case-study-meta-label">Impact</span>
-                    <span class="case-study-meta-value">Reduced maintenance response time by 50%.</span>
-                  </div>
-                </div>
-                <div class="mt-3"><small class="text-muted"><strong>Stack:</strong> Flutter, FCM, REST APIs</small></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Case Study: Om Shanti -->
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="case-study-card">
-              <div class="case-study-content">
-                <div class="case-study-header">
-                  <span class="case-study-tag">Lifestyle | Spiritual</span>
-                </div>
-                <h4>Om Shanti</h4>
-                <p class="problem"><strong>Business Problem:</strong> Spiritual content delivery to a global audience.</p>
-                <p><strong>Technical Challenge:</strong> Multi-language support and optimized media delivery.</p>
-                <div class="case-study-meta">
-                  <div class="case-study-meta-item">
-                    <span class="case-study-meta-label">Impact</span>
-                    <span class="case-study-meta-value">Reached 50K+ downloads with high user ratings.</span>
-                  </div>
-                  <div class="case-study-meta-item">
-                    <span class="case-study-meta-label">Strategy</span>
-                    <span class="case-study-meta-value">Modernized legacy Android code to MVVM.</span>
-                  </div>
-                </div>
-                <div class="mt-3"><small class="text-muted"><strong>Stack:</strong> Android Native, Java</small></div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section><!-- End Case Studies Section -->
@@ -576,15 +533,120 @@
       </div>
     </section>
 
+    <!-- ======= Personal Apps Section ======= -->
+    <!-- Source of truth: ../mobile-apps-personal (published Play Store apps). Add one card per app. -->
+    <section id="personal-apps" class="portfolio">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Personal Apps on Google Play</h2>
+          <p>Apps I built and published on my own Play Store account.</p>
+        </div>
+
+        <div class="row">
+          <!-- App: PromptG -->
+          <div class="col-lg-6 col-md-6 mb-4">
+            <div class="case-study-card">
+              <div class="card-num">01</div>
+              <div class="case-study-content">
+                <div class="case-study-header">
+                  <span class="case-study-tag">AI | Creativity</span>
+                  <span class="case-study-tag">5K+ Downloads</span>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                  <img src="assets/img/apps/promptg.png" alt="PromptG: AI Image Prompts app icon" class="app-icon me-3" width="56" height="56" loading="lazy">
+                  <h4 class="mb-0">PromptG: AI Image Prompts</h4>
+                </div>
+                <p>A library of ready-made prompts for AI image tools. Browse by category, see a sample image for each prompt, copy it in one tap and paste it into the tool you use. I also built the admin panel and the website for it.</p>
+                <div class="mt-3"><small class="text-muted"><strong>Stack:</strong> Flutter, Firebase, Next.js</small></div>
+                <div class="mt-3">
+                  <a href="https://play.google.com/store/apps/details?id=com.swastik.promptg" target="_blank" rel="noopener" class="me-3"><i class="bx bxl-play-store"></i> Google Play</a>
+                  <a href="https://promptg.app" target="_blank" rel="noopener"><i class="bx bx-link-external"></i> promptg.app</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- App: Jain Stavan Video Status -->
+          <div class="col-lg-6 col-md-6 mb-4">
+            <div class="case-study-card">
+              <div class="card-num">02</div>
+              <div class="case-study-content">
+                <div class="case-study-header">
+                  <span class="case-study-tag">Community | Devotional</span>
+                  <span class="case-study-tag">10K+ Downloads</span>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                  <img src="assets/img/apps/jain-stavan.png" alt="Jain Stavan Video Status app icon" class="app-icon me-3" width="56" height="56" loading="lazy">
+                  <h4 class="mb-0">Jain Stavan Video Status</h4>
+                </div>
+                <p>Short Jain stavan videos to watch, download and share as a WhatsApp status. I am now rewriting it in Flutter, with Gujarati, Hindi and English.</p>
+                <div class="mt-3"><small class="text-muted"><strong>Stack:</strong> Android (native), Firebase. Flutter rewrite in progress</small></div>
+                <div class="mt-3">
+                  <a href="https://play.google.com/store/apps/details?id=com.swastik.jainstavan.videostatus" target="_blank" rel="noopener"><i class="bx bxl-play-store"></i> Google Play</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- App: Read More Fun -->
+          <div class="col-lg-6 col-md-6 mb-4">
+            <div class="case-study-card">
+              <div class="card-num">03</div>
+              <div class="case-study-content">
+                <div class="case-study-header">
+                  <span class="case-study-tag">Utility | Open Source</span>
+                  <span class="case-study-tag">10K+ Downloads</span>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                  <img src="assets/img/apps/read-more-fun.png" alt="Read More Fun app icon" class="app-icon me-3" width="56" height="56" loading="lazy">
+                  <h4 class="mb-0">Read More Fun</h4>
+                </div>
+                <p>Makes those WhatsApp messages that hide the answer behind "Read more". Handy for quizzes, jokes and spoilers. It has templates, a live preview and 11 languages, and the code is open source.</p>
+                <div class="mt-3"><small class="text-muted"><strong>Stack:</strong> Flutter, Dart</small></div>
+                <div class="mt-3">
+                  <a href="https://play.google.com/store/apps/details?id=com.swastik.readmore.fun" target="_blank" rel="noopener" class="me-3"><i class="bx bxl-play-store"></i> Google Play</a>
+                  <a href="https://github.com/pratikbutani/read_more_fun" target="_blank" rel="noopener"><i class="bx bxl-github"></i> Source</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- App: Jabra Fan -->
+          <div class="col-lg-6 col-md-6 mb-4">
+            <div class="case-study-card">
+              <div class="card-num">04</div>
+              <div class="case-study-content">
+                <div class="case-study-header">
+                  <span class="case-study-tag">Fun | Audio</span>
+                  <span class="case-study-tag">10K+ Downloads</span>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                  <img src="assets/img/apps/jabra-fan.png" alt="Jabra Fan (Sleeping FAN) app icon" class="app-icon me-3" width="56" height="56" loading="lazy">
+                  <h4 class="mb-0">Jabra Fan (Sleeping FAN)</h4>
+                </div>
+                <p>A fan on your phone. It spins and makes fan noise, which a lot of people like to sleep to. I later made a joke web version for a "dumb ideas" challenge that generates the sound in the browser.</p>
+                <div class="mt-3"><small class="text-muted"><strong>Stack:</strong> Android Native, Web Audio API</small></div>
+                <div class="mt-3">
+                  <a href="https://play.google.com/store/apps/details?id=com.swastik.jabra.fan.summer" target="_blank" rel="noopener" class="me-3"><i class="bx bxl-play-store"></i> Google Play</a>
+                  <a href="https://jabrafan.vercel.app" target="_blank" rel="noopener"><i class="bx bx-link-external"></i> Web Edition</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Personal Apps Section -->
+
     <!-- ======= Rapid MVPs Section ======= -->
+    <!-- Source of truth: ../web-apps (vibe-coded web apps). Add one card per app. -->
     <section id="rapid-mvps" class="portfolio">
       <div class="container" data-aos="fade-up">
         <div class="section-title">
           <h2>Rapid MVPs & AI-Assisted Experiments</h2>
-          <p>Showcasing an experimentation mindset and fast execution through AI-accelerated workflows.</p>
+          <p>Side projects I put together quickly, mostly with AI coding tools, to try an idea out.</p>
         </div>
 
-        <p class="text-center mb-5 lead">“Alongside production-scale engineering, I actively experiment with AI-assisted workflows to rapidly prototype ideas, validate product concepts, and explore faster ways of building useful digital experiences.”</p>
+        <p class="text-center mb-5 lead">Outside of work I like building small things fast. Some are for my community, some are for developers, and a couple are just for fun.</p>
 
         <div class="row">
           <!-- MVP: Done -->
@@ -595,15 +657,17 @@
                 <div class="case-study-header">
                   <span class="case-study-tag">Experimental MVP</span>
                   <a href="https://done.pratikbutani.com/" target="_blank"><i class="bx bx-link-external"></i></a>
+                  <a href="https://github.com/pratikbutani/prioritize-now" target="_blank" rel="noopener" class="ms-2" title="Source on GitHub"><i class="bx bxl-github"></i></a>
                 </div>
                 <h4>Done</h4>
-                <p>Lightweight productivity-focused experiment for execution tracking and rapid workflow validation.</p>
+                <p>A to-do list based on the Eisenhower Matrix. Put each task under Do, Decide, Delegate or Delete and work on what matters first. Everything is saved in your browser, so there is no login.</p>
                 <div class="mt-auto">
                   <small class="d-block mb-1"><strong>Focus Areas:</strong></small>
                   <ul class="list-unstyled small">
-                    <li>• Fast MVP execution</li>
-                    <li>• Minimal product UX</li>
+                    <li>• No login, works straight away</li>
+                    <li>• Built and shipped quickly</li>
                   </ul>
+                  <div class="mt-2"><small class="text-muted"><strong>Stack:</strong> Next.js, TypeScript, Tailwind CSS, shadcn/ui</small></div>
                 </div>
               </div>
             </div>
@@ -619,13 +683,14 @@
                   <a href="https://navkar.pratikbutani.com/" target="_blank"><i class="bx bx-link-external"></i></a>
                 </div>
                 <h4>Navkar</h4>
-                <p>Spiritually-focused experience to modernize engagement around Jain devotional practices.</p>
+                <p>Made for a community drive to chant the Navkar Mahamantra 5 crore times. Play the mantra, each round adds to a shared counter, and you can pass it on with your name. In English, Hindi and Gujarati.</p>
                 <div class="mt-auto">
                   <small class="d-block mb-1"><strong>Focus Areas:</strong></small>
                   <ul class="list-unstyled small">
-                    <li>• Community product thinking</li>
-                    <li>• AI-assisted content structuring</li>
+                    <li>• Built for my own community</li>
+                    <li>• Spreads through sharing</li>
                   </ul>
+                  <div class="mt-2"><small class="text-muted"><strong>Stack:</strong> Next.js, Firebase, Tailwind CSS</small></div>
                 </div>
               </div>
             </div>
@@ -641,13 +706,14 @@
                   <a href="https://kshma.pratikbutani.com/" target="_blank"><i class="bx bx-link-external"></i></a>
                 </div>
                 <h4>Kshma</h4>
-                <p>Reflective experience built around mindfulness and digital simplicity.</p>
+                <p>Make a Michhami Dukkadam card for Paryushan. Pick a template, add your photo and a message in English, Hindi or Gujarati, then download or share it.</p>
                 <div class="mt-auto">
                   <small class="d-block mb-1"><strong>Focus Areas:</strong></small>
                   <ul class="list-unstyled small">
-                    <li>• Emotion-driven UX</li>
-                    <li>• Fast iteration cycles</li>
+                    <li>• Simple enough for any age</li>
+                    <li>• Card is rendered in the browser</li>
                   </ul>
+                  <div class="mt-2"><small class="text-muted"><strong>Stack:</strong> Next.js 15, React 19, Tailwind CSS, HTML5 Canvas</small></div>
                 </div>
               </div>
             </div>
@@ -661,15 +727,17 @@
                 <div class="case-study-header">
                   <span class="case-study-tag">Experimental MVP</span>
                   <a href="https://digipin.pratikbutani.com/" target="_blank"><i class="bx bx-link-external"></i></a>
+                  <a href="https://github.com/pratikbutani/digipin-api" target="_blank" rel="noopener" class="ms-2" title="Source on GitHub"><i class="bx bxl-github"></i></a>
                 </div>
                 <h4>DigiPin</h4>
-                <p>Utility-focused concept exploring digital identity and location workflows.</p>
+                <p>A free, open-source API for DIGIPIN, India Post's digital address code. Send coordinates and get the 10-character code, or send a code and get the location back.</p>
                 <div class="mt-auto">
                   <small class="d-block mb-1"><strong>Focus Areas:</strong></small>
                   <ul class="list-unstyled small">
-                    <li>• Utility experimentation</li>
-                    <li>• Lightweight architecture</li>
+                    <li>• Open source, for other developers</li>
+                    <li>• Serverless, no dependencies</li>
                   </ul>
+                  <div class="mt-2"><small class="text-muted"><strong>Stack:</strong> Node.js, Vercel Functions, OpenStreetMap</small></div>
                 </div>
               </div>
             </div>
@@ -683,15 +751,17 @@
                 <div class="case-study-header">
                   <span class="case-study-tag">Experimental MVP</span>
                   <a href="https://pratikbutani.github.io/win-or-die/" target="_blank"><i class="bx bx-link-external"></i></a>
+                  <a href="https://github.com/pratikbutani/win-or-die" target="_blank" rel="noopener" class="ms-2" title="Source on GitHub"><i class="bx bxl-github"></i></a>
                 </div>
                 <h4>Win or Die</h4>
-                <p>Gamified product focused on engagement mechanics and interactive pattern experimentation.</p>
+                <p>A small strategy game against a robot. You take turns removing balls from a basket, and whoever takes the last one wins. Three difficulty levels.</p>
                 <div class="mt-auto">
                   <small class="d-block mb-1"><strong>Focus Areas:</strong></small>
                   <ul class="list-unstyled small">
-                    <li>• Gamification engagement</li>
-                    <li>• Rapid UI iteration</li>
+                    <li>• Game logic for the robot player</li>
+                    <li>• Plain HTML and JavaScript</li>
                   </ul>
+                  <div class="mt-2"><small class="text-muted"><strong>Stack:</strong> HTML, CSS, JavaScript</small></div>
                 </div>
               </div>
             </div>
@@ -707,13 +777,14 @@
                   <a href="https://eventecho.pratikbutani.com/" target="_blank"><i class="bx bx-link-external"></i></a>
                 </div>
                 <h4>EventEcho</h4>
-                <p>Event engagement concept designed to improve attendee interaction and community experiences.</p>
+                <p>Went to an event and not sure what to post? Pick the event, choose a tone, and it drafts a LinkedIn or X post for you. Add a photo and it writes about what is in it.</p>
                 <div class="mt-auto">
                   <small class="d-block mb-1"><strong>Focus Areas:</strong></small>
                   <ul class="list-unstyled small">
-                    <li>• Event-tech experimentation</li>
-                    <li>• Startup-style execution</li>
+                    <li>• Gemini for text and photos</li>
+                    <li>• Separate flows for organizers and attendees</li>
                   </ul>
+                  <div class="mt-2"><small class="text-muted"><strong>Stack:</strong> React, Vite, Gemini API, Firebase</small></div>
                 </div>
               </div>
             </div>
@@ -729,12 +800,12 @@
                   <a href="https://figma-design-review-ai-838367396784.us-west1.run.app/" target="_blank"><i class="bx bx-link-external"></i></a>
                 </div>
                 <h4>Figma Design Review AI</h4>
-                <p>AI-powered audit of Figma designs. Just add a Figma link and access token to receive feedback as if from a Lead Product Designer.</p>
+                <p>Paste a Figma link and access token, and it reviews the design the way a lead product designer would.</p>
                 <div class="mt-auto">
                   <small class="d-block mb-1"><strong>Focus Areas:</strong></small>
                   <ul class="list-unstyled small">
                     <li>• Design QA automation</li>
-                    <li>• Lead Designer insights</li>
+                    <li>• Feedback before developer handoff</li>
                   </ul>
                 </div>
               </div>
@@ -751,12 +822,12 @@
                   <a href="https://patches-puzzle-838367396784.us-west1.run.app/" target="_blank"><i class="bx bx-link-external"></i></a>
                 </div>
                 <h4>Patches</h4>
-                <p>A new LinkedIn-integrated gaming concept exploring unique ways of professional engagement and interactive social growth.</p>
+                <p>A puzzle game concept for LinkedIn users, to see whether a quick game gets professionals to engage more.</p>
                 <div class="mt-auto">
                   <small class="d-block mb-1"><strong>Focus Areas:</strong></small>
                   <ul class="list-unstyled small">
-                    <li>• Professional engagement</li>
-                    <li>• Social gamification</li>
+                    <li>• Short play sessions</li>
+                    <li>• Simple puzzle mechanics</li>
                   </ul>
                 </div>
               </div>
@@ -773,13 +844,13 @@
                   <a href="https://drive.google.com/drive/folders/12KlROd8MPfR0dbxGWoDUcG5Z-TBCoBQ_?usp=drive_link" target="_blank"><i class="bx bx-link-external"></i></a>
                 </div>
                 <h4>AI Assistants & Custom GPT Workflows</h4>
-                <p>A collection of experiments exploring human + AI collaboration patterns for productivity.</p>
+                <p>Custom GPTs and AI assistants I have set up to speed up my everyday work.</p>
                 <div class="mt-auto">
                   <small class="d-block mb-1"><strong>Focus Areas:</strong></small>
                   <ul class="list-unstyled small">
                     <li>• Prompt engineering</li>
                     <li>• AI workflow automation</li>
-                    <li>• Knowledge architecture</li>
+                    <li>• Organising knowledge for assistants</li>
                   </ul>
                 </div>
               </div>
