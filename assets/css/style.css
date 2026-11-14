@@ -213,7 +213,7 @@ a:hover {
 #hero {
   width: 100%;
   min-height: 100vh;
-  background: rgb(var(--hero-fade-rgb));
+  background: #0b0f17;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -222,47 +222,39 @@ a:hover {
   z-index: 1;
 }
 
-/* Speaking photo on the right, fading into the page colour behind the text */
+/* Full event photo behind the hero, cropped only from top and bottom on wide screens */
 #hero::before {
   content: "";
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  background: url("../img/hero-speaking-bw.jpg") 72% 30% / cover no-repeat;
+  inset: 0;
+  background: url("../img/hero-connect-gujarat.jpg") 62% 50% / cover no-repeat;
   z-index: -2;
 }
 
+/* Dark layer so the text stays readable on the photo */
 #hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(var(--hero-fade-rgb), 0.88);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.62) 55%, rgba(0, 0, 0, 0.45) 100%);
   z-index: -1;
 }
 
 @media (min-width: 992px) {
-  #hero { padding-left: 100px; }
+  #hero { padding-left: 100px; padding-top: 150px; }
 }
 
-/* Narrower laptops: wrap the headline earlier so it stays clear of the photo */
-@media (min-width: 1200px) and (max-width: 1399px) {
-  section#hero { padding-left: 140px; }
-  section#hero h1 { max-width: 620px; font-size: 50px; }
-  section#hero p { max-width: 560px; }
-  section#hero .cta-buttons { max-width: 640px; }
+@media (max-width: 991px) {
+  #hero::after { background: rgba(0, 0, 0, 0.68); }
 }
 
-@media (min-width: 1200px) {
-  #hero::after {
-    background: linear-gradient(90deg,
-      rgb(var(--hero-fade-rgb)) 0%,
-      rgb(var(--hero-fade-rgb)) 30%,
-      rgba(var(--hero-fade-rgb), 0.85) 50%,
-      rgba(var(--hero-fade-rgb), 0.35) 68%,
-      rgba(var(--hero-fade-rgb), 0.1) 100%);
-  }
+.hero-eyebrow {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 18px;
 }
 
 #hero h1 {
@@ -677,32 +669,48 @@ section { padding: 120px 0; }
 /*--------------------------------------------------------------
 # Community & Authority
 --------------------------------------------------------------*/
-.community-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.community-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+@media (max-width: 991px) { .community-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 575px) { .community-grid { grid-template-columns: 1fr; } }
 .community-item {
-  border-radius: var(--radius-lg);
+  border-radius: 12px;
   overflow: hidden;
   position: relative;
   aspect-ratio: 16/10;
   display: block;
+  cursor: zoom-in;
+  box-shadow: var(--card-shadow);
 }
 
 .community-item img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
 .community-overlay {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
-  padding: 30px;
+  inset: auto 0 0 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.85), transparent);
+  padding: 40px 20px 16px;
+}
+.community-item:hover img { transform: scale(1.04); }
+.community-overlay h5 { color: #fff; margin: 0; font-size: 17px; }
+.community-expand {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.55);
+  color: #fff;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
   opacity: 0;
   transition: var(--transition);
 }
-
-.community-item:hover .community-overlay { opacity: 1; }
-.community-item:hover img { transform: scale(1.1); }
-.community-overlay h5 { color: #fff; margin-bottom: 5px; }
-.community-overlay p { color: #cbd5e1; font-size: 14px; margin-bottom: 0; }
+.community-item:hover .community-expand, .community-item:focus-visible .community-expand { opacity: 1; }
+.glightbox-clean .gslide-description { background: #0f172a; }
+.glightbox-clean .gslide-title { color: #fff; font-weight: 700; margin-bottom: 6px; }
+.glightbox-clean .gslide-desc { color: #cbd5e1; }
 
 /*--------------------------------------------------------------
 # Open For Section
@@ -905,3 +913,42 @@ section { padding: 120px 0; }
   box-shadow: 0 8px 25px rgba(5, 99, 187, 0.3);
 }
 .back-to-top i { font-size: 24px; color: #fff; }
+
+/*--------------------------------------------------------------
+# Community lists and testimonials
+--------------------------------------------------------------*/
+.community-list {
+  background: var(--bg-light);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  height: 100%;
+  box-shadow: var(--card-shadow);
+}
+.community-list h4 { font-size: 20px; margin-bottom: 18px; color: var(--text-heading); }
+.community-list ul { list-style: none; padding: 0; margin: 0; }
+.community-list li { display: flex; gap: 16px; padding: 12px 0; border-top: 1px solid rgba(148, 163, 184, 0.2); color: var(--text-main); line-height: 1.55; }
+.community-list li:first-child { border-top: 0; padding-top: 0; }
+.community-list .cl-date { flex: 0 0 72px; font-size: 13px; font-weight: 700; color: var(--primary); padding-top: 2px; }
+.community-list strong { color: var(--text-heading); }
+
+.testimonial-card {
+  background: var(--bg-light);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  margin: 0;
+  height: 100%;
+  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+}
+.testimonial-card blockquote { font-size: 18px; line-height: 1.6; color: var(--text-heading); margin: 0 0 20px; }
+.testimonial-card figcaption strong { display: block; color: var(--text-heading); }
+.testimonial-card figcaption span { font-size: 14px; color: var(--text-muted); }
+.testimonial-subhead { font-size: 18px; color: var(--text-heading); margin: 16px 0 20px; text-align: center; }
+.testimonial-card-sm blockquote { font-size: 16px; }
+
+/* Hero text on the dark photo layer, same in light and dark mode */
+section#hero .hero-eyebrow { color: #7cc4ff; }
+section#hero h1 { color: #fff; }
+section#hero p { color: rgba(255, 255, 255, 0.86); }
+section#hero .premium-gradient-text { background: linear-gradient(135deg, #7cc4ff 0%, #4da3ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+section#hero .founder-focus { color: #fff; background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(6px); }

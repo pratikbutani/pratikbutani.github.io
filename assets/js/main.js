@@ -246,6 +246,16 @@
   });
 
   /**
+   * Community photos: open in a lightbox slider with captions
+   */
+  GLightbox({
+    selector: '.community-lightbox',
+    loop: true,
+    descPosition: 'bottom',
+    touchNavigation: true
+  });
+
+  /**
    * Initiate portfolio details lightbox 
    */
   const portfolioDetailsLightbox = GLightbox({

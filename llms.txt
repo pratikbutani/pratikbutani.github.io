@@ -1,0 +1,58 @@
+# Pratik Butani
+
+> Pratik Butani is an engineering leader and independent product builder based in Ahmedabad, Gujarat, India, with 13+ years of building software products: Android since January 2013 and Flutter since 2020. Most recently Head of Mobile, leading a team of about 20 Flutter and Android engineers. He builds and ships his own apps, explores AI-assisted and agentic development, speaks at developer events, and is Marketing and Communication Lead at GDG Cloud Rajkot.
+
+Key facts:
+
+- Name: Pratik Butani
+- Role: Engineering Leader, Mobile Architect, AI Product Builder, Developer Community Leader
+- Location: Ahmedabad, Gujarat, India (works with teams remotely)
+- Experience: 13+ years, starting as an Android developer in January 2013
+- Most recent role: Head of Mobile (June 2024 to July 2026), leading about 20 engineers
+- Also: product manager and project manager on client products; co-founder of a small product and services company (2017 to 2019)
+- Community: Marketing and Communication Lead, GDG Cloud Rajkot; Program Committee Member, flutterCon India 2026; 15+ talks and workshops; 30+ community events organised
+- Recognition: winner of the Flutter Puzzle Hack (2022); 62K+ reputation on Stack Overflow
+- Open to: engineering leadership, mobile architecture, AI-assisted development, technical consulting, product development, advisory, speaking and training; Ahmedabad or remote; not limited to mobile
+- Contact: pratik13butani@gmail.com, or linkedin.com/in/pratikbutani
+
+## What Pratik does
+
+- Leads and advises engineering teams, especially in mobile development
+- Designs and builds Flutter and Android applications with modular, offline-first architecture
+- Builds independent products, prototypes, MVPs, web apps and APIs
+- Explores AI-assisted and agentic software development (Gemini, Gemini CLI, Google Antigravity, Google AI Studio, Google Stitch, Claude, Cursor, OpenAI APIs, MCP)
+- Translates business requirements into technical plans, and supports presales, estimation and technical consulting
+- Organises developer events and workshops, mentors developers, and speaks and writes about mobile engineering, AI and product development
+
+## Profile
+
+- [Portfolio](https://pratikbutani.com/): selected work, own apps, experiments, community work and testimonials
+- [Full profile](https://pratikbutani.com/llms-full.txt): career history, projects, skills, talks, events and leadership approach in plain text
+- [Resume (PDF)](https://pratikbutani.com/assets/PratikButani.pdf): work history, projects, skills and education
+
+## Profiles elsewhere
+
+- [LinkedIn](https://www.linkedin.com/in/pratikbutani/): professional profile and recommendations
+- [GitHub](https://github.com/pratikbutani): open source and side projects
+- [Stack Overflow](https://stackoverflow.com/users/1318946/pratik-butani): 62K+ reputation, mostly Android and Flutter answers
+- [Sessionize](https://sessionize.com/pratikbutani/): speaker profile and talk abstracts
+- [Medium](https://pratikbutani.medium.com/): articles on Flutter, Android and AI tools
+- [Substack](https://pratikbutani.substack.com/): writing on mobile engineering, AI and lessons from building
+- [dev.to](https://dev.to/pratikbutani): articles
+- [Topmate](https://topmate.io/pratikbutani): 1:1 mentoring and career guidance sessions
+- [X](https://x.com/pratik13butani): @pratik13butani
+
+## Apps on Google Play
+
+- [PromptG: AI Image Prompts](https://play.google.com/store/apps/details?id=com.swastik.promptg): prompt library for AI image tools, with its own website and admin panel, 5K+ downloads. Website: https://promptg.app
+- [Jain Stavan Video Status](https://play.google.com/store/apps/details?id=com.swastik.jainstavan.videostatus): devotional video status app, 10K+ downloads
+- [Read More Fun](https://play.google.com/store/apps/details?id=com.swastik.readmore.fun): creates WhatsApp "Read more" messages in 11 languages, open source, 10K+ downloads
+- [Jabra Fan (Sleeping FAN)](https://play.google.com/store/apps/details?id=com.swastik.jabra.fan.summer): fan sounds for sleep, 10K+ downloads
+
+## Optional
+
+- [DigiPin API](https://digipin.pratikbutani.com/): open-source API for India Post's DIGIPIN address codes
+- [EventEcho](https://eventecho.pratikbutani.com/): AI-written social posts for event attendees
+- [Done](https://done.pratikbutani.com/): Eisenhower Matrix task manager
+- [Kshma](https://kshma.pratikbutani.com/): Michhami Dukkadam greeting card maker
+- [Navkar](https://navkar.pratikbutani.com/): collective Navkar Mahamantra chanting counter

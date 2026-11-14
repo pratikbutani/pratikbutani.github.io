@@ -6,4 +6,19 @@
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>https://pratikbutani.com/assets/PratikButani.pdf</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://pratikbutani.com/llms.txt</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pratikbutani.com/llms-full.txt</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.5</priority>
+  </url>
 </urlset>

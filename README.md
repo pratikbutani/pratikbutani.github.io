@@ -1,28 +1,23 @@
-# Pratik Butani | Engineering Lead & Product Architect
+# pratikbutani.github.io
 
-## Overview
-This repository contains the source code for Pratik Butani's premium personal brand website. Repositioned as a **Product Engineering Leader**, the site showcases Pratik's 12+ years of expertise in mobile technologies, engineering leadership, and AI-assisted development workflows.
+Source for my personal site and portfolio.
 
-## Profile Summary
-Pratik Butani is an Engineering Lead managing a high-performance team of 20+ mobile developers. With a focus on **Product Engineering**, **Mobile Architecture**, and **AI-Assisted Development**, he helps startups and scale-ups build robust, scalable mobile systems. 
+## What is on the page
 
-- **Ranked Top 100 in India** on StackOverflow (60K+ Reputation).
-- **Engineering Lead** at 7Span.
-- **GDG Cloud Rajkot** Marketing & Communication Lead.
+- **About:** who I am and how I work.
+- **Selected Work:** products I have worked on at my job (Vepaar, DateDish, KOOPS, Tapomo and two under NDA).
+- **Shipped Independently:** apps I built and published myself. The projects live in `../mobile-apps-personal`.
+- **Experiments:** small web apps and experiments. The projects live in `../web-apps`.
+- **Community:** GDG Cloud Rajkot, talks, writing and Stack Overflow.
 
-## Website Features
-- **Hero:** Premium positioning for Engineering Leadership.
-- **Impact Metrics:** Quantifiable achievements (12+ Years, 20+ Team, 65+ Projects).
-- **Selected Product Experience:** In-depth case studies for high-impact projects (Vepaar, KOOPS, etc.).
-- **AI-Assisted Engineering:** Documentation of modern AI-first development workflows (Cursor, Claude, Manus).
-- **Services:** Repositioned for leadership and technical strategy.
-- **Opportunities:** Focus on leadership roles in Ahmedabad or Remote.
+## Editing
 
-## Technologies Used
-- HTML5, CSS3 (Inter & Raleway typography)
-- JavaScript (AOS, Swiper, GlightBox)
-- Bootstrap 5
-- Modernized CSS with premium gradients and shadows
+It is a single static page: `index.html`, with styles in `assets/css/style.css`. Each project is one `case-study-card` block. To add a project, copy an existing card in the right section and change the text, icon and links. App icons go in `assets/img/apps/`.
+
+## Built with
+
+HTML, CSS, Bootstrap 5 and a little JavaScript (AOS, PureCounter). Hosted on GitHub Pages.
 
 ## License
-Copyright © Pratik Butani. All Rights Reserved.
+
+Copyright © Pratik Butani. All rights reserved.
