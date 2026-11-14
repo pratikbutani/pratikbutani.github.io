@@ -1,0 +1,59 @@
+# Deploys the site to cPanel hosting (pratikbutani.com) over FTPS
+# every time something is pushed or merged into master.
+#
+# Needs these repository secrets (Settings > Secrets and variables > Actions):
+#   FTP_SERVER      FTP host from cPanel, e.g. the server hostname or IP (not the Cloudflare-proxied domain)
+#   FTP_USERNAME    FTP account username, e.g. deploy@pratikbutani.com
+#   FTP_PASSWORD    FTP account password
+#   FTP_SERVER_DIR  Folder to upload into, ending with a slash, e.g. ./ when the FTP account is rooted at public_html
+#
+# Until the secrets are added, the workflow skips the upload instead of failing.
+
+name: Deploy to cPanel
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-cpanel
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check FTP secrets
+        id: check
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+        run: |
+          if [ -z "$FTP_SERVER" ]; then
+            echo "FTP secrets are not set yet, skipping the upload."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check out the site
+        if: steps.check.outputs.ready == 'true'
+        uses: actions/checkout@v4
+
+      - name: Upload changed files to cPanel
+        if: steps.check.outputs.ready == 'true'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          protocol: ftps
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/.idea/**
+            **/.DS_Store
+            README.md
+            testimonials.md
