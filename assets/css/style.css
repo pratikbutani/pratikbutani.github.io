@@ -44,6 +44,7 @@
 --------------------------------------------------------------*/
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -134,7 +135,8 @@ a:hover {
 }
 
 .nav-menu a i { font-size: 22px; color: var(--primary); }
-.nav-menu a span { padding: 0 5px 0 10px; color: #fff; display: none; font-weight: 600; }
+.nav-menu a span { padding: 0 5px 0 10px; color: var(--text-heading); display: none; font-weight: 600; }
+.nav-menu a:hover span, .nav-menu a.active span { color: #fff; }
 
 .nav-menu a:hover, .nav-menu a.active {
   color: #fff;
@@ -387,7 +389,7 @@ section { padding: 120px 0; }
 }
 
 @media (max-width: 992px) {
-  .full-bleed { margin-left: 0; padding-left: 0; width: 100%; }
+  .full-bleed { margin-left: 0; padding-left: 0 !important; width: 100%; }
 }
 
 .section-bg { background-color: var(--bg-secondary); }
@@ -952,3 +954,40 @@ section#hero h1 { color: #fff; }
 section#hero p { color: rgba(255, 255, 255, 0.86); }
 section#hero .premium-gradient-text { background: linear-gradient(135deg, #7cc4ff 0%, #4da3ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 section#hero .founder-focus { color: #fff; background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(6px); }
+
+/*--------------------------------------------------------------
+# Phone fixes
+--------------------------------------------------------------*/
+.count-box .count-value { display: flex; justify-content: center; align-items: baseline; font-size: 48px; font-weight: 800; color: var(--text-heading); font-family: "Space Grotesk", sans-serif; line-height: 1; }
+.count-box .count-value span { display: inline; font-size: inherit; }
+
+@media (max-width: 992px) {
+  #header { box-shadow: none; }
+  .mobile-nav-active #header { box-shadow: 5px 0 30px rgba(0, 0, 0, 0.25); }
+  .nav-menu a { color: var(--text-heading); }
+  .nav-menu, .nav-menu > ul { width: 100%; }
+  .nav-menu a { border: 1px solid rgba(148, 163, 184, 0.3); }
+  .nav-menu a:hover, .nav-menu a.active { border-color: var(--primary); }
+}
+
+@media (max-width: 767px) {
+  section { padding: 80px 0; }
+  section#hero .hero-eyebrow { font-size: 12px; letter-spacing: 0.08em; }
+  .ai-section { padding: 80px 0; }
+  .section-title { padding-bottom: 40px; }
+  .section-title h2 { font-size: 34px; }
+  .section-title p { font-size: 18px; }
+  .about-card, .case-study-card, .focus-area-card { padding: 28px 22px; }
+  .workflow-wrapper { margin: 40px auto; }
+  .workflow-line { top: 26px; }
+  .workflow-step { min-width: 0; }
+  .workflow-icon { width: 52px; height: 52px; font-size: 22px; margin-bottom: 12px; }
+  .workflow-step span { font-size: 10px; letter-spacing: 0.02em; display: block; padding: 0 2px; }
+  .count-box { padding: 30px 20px; }
+  .count-box .count-value { font-size: 40px; }
+  .community-list { padding: 24px 20px; }
+  .community-list li { gap: 12px; }
+  .community-list .cl-date { flex-basis: 64px; }
+  .testimonial-card { padding: 24px 20px; }
+  .testimonial-card blockquote { font-size: 17px; }
+}
