@@ -1,0 +1,7 @@
+# The mail settings file holds the mailbox password: never serve it over the web.
+<Files "smtp-config.php">
+  Require all denied
+</Files>
+
+# No folder listings.
+Options -Indexes

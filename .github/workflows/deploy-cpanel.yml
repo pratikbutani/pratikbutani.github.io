@@ -6,6 +6,8 @@
 #   FTP_USERNAME    FTP account username, e.g. deploy@pratikbutani.com
 #   FTP_PASSWORD    FTP account password
 #   FTP_SERVER_DIR  Folder to upload into, ending with a slash, e.g. ./ when the FTP account is rooted at public_html
+#   SMTP_PASSWORD   Password of the no-reply@pratikbutani.com mailbox, used by the enquiry form.
+#                   It is written into forms/smtp-config.php at deploy time and never committed.
 #
 # Until the secrets are added, the workflow skips the upload instead of failing.
 
@@ -39,6 +41,30 @@ jobs:
       - name: Check out the site
         if: steps.check.outputs.ready == 'true'
         uses: actions/checkout@v4
+
+      - name: Write the enquiry form mail settings
+        if: steps.check.outputs.ready == 'true'
+        env:
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        run: |
+          if [ -z "$SMTP_PASSWORD" ]; then
+            echo "SMTP_PASSWORD is not set, the enquiry form will not be able to send."
+            exit 0
+          fi
+          # Base64 keeps any quote or backslash in the password from breaking the PHP file.
+          PASS_B64=$(printf '%s' "$SMTP_PASSWORD" | base64 -w0)
+          cat > forms/smtp-config.php <<EOF
+          <?php
+          // Written by the deploy workflow from the SMTP_PASSWORD secret. Not in the repository.
+          return [
+              'host' => '127.0.0.1',
+              'port' => 465,
+              'user' => 'no-reply@pratikbutani.com',
+              'pass' => base64_decode('${PASS_B64}'),
+              'from' => 'no-reply@pratikbutani.com',
+          ];
+          EOF
+          echo "Wrote forms/smtp-config.php"
 
       - name: Upload changed files to cPanel
         if: steps.check.outputs.ready == 'true'

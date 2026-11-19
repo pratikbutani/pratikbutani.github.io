@@ -178,14 +178,16 @@ function post(string $key): string
 }
 
 /**
- * SMTP settings live outside the website folder (one level above public_html),
- * so the mailbox password is never in the repository or reachable from the web.
+ * SMTP settings come from forms/smtp-config.php, which the deploy workflow writes from the
+ * SMTP_PASSWORD secret (never committed, and blocked from the web by forms/.htaccess).
  * The file returns an array: host, port, user, pass, from.
  */
 function load_smtp_config(): array
 {
-    // forms/ -> public_html -> home folder
-    $candidates = [dirname(__DIR__, 2) . '/enquiry-smtp.php'];
+    $candidates = [
+        __DIR__ . '/smtp-config.php',              // written by the deploy workflow from a GitHub secret
+        dirname(__DIR__, 2) . '/enquiry-smtp.php', // or placed by hand above public_html
+    ];
     $docRoot = rtrim($_SERVER['DOCUMENT_ROOT'] ?? '', '/');
     if ($docRoot !== '') {
         $candidates[] = dirname($docRoot) . '/enquiry-smtp.php';
@@ -198,23 +200,7 @@ function load_smtp_config(): array
         }
     }
     if ($file === null) {
-        // Temporary diagnosis: file names only (never paths or contents).
-        $home = dirname(__DIR__, 2);
-        $all = @scandir($home) ?: [];
-        $seen = array_values(array_filter($all, fn($n) => preg_match('/smtp|enq/i', $n) === 1));
-        respond(500, [
-            'ok'    => false,
-            'error' => 'Your message could not be sent just now. Please email me directly at ' . MAIL_TO . '.',
-            'code'  => 'smtp_config_missing',
-            'diag'  => [
-                'open_basedir' => ini_get('open_basedir') !== '' && ini_get('open_basedir') !== false,
-                'home_readable' => @is_readable($home),
-                'home_has_public_html' => @is_dir($home . '/public_html'),
-                'home_entries' => count($all),
-                'matching_names_in_home' => $seen,
-                'php_files_in_home' => count(array_filter($all, fn($n) => preg_match('/\\.php$/i', $n) === 1)),
-            ],
-        ]);
+        send_failed('smtp_config_missing');
     }
     if (!is_readable($file)) {
         send_failed('smtp_config_unreadable');
