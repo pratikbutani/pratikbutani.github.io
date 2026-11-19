@@ -200,7 +200,8 @@ function load_smtp_config(): array
     if ($file === null) {
         // Temporary diagnosis: file names only (never paths or contents).
         $home = dirname(__DIR__, 2);
-        $seen = @glob($home . '/*smtp*') ?: [];
+        $all = @scandir($home) ?: [];
+        $seen = array_values(array_filter($all, fn($n) => preg_match('/smtp|enq/i', $n) === 1));
         respond(500, [
             'ok'    => false,
             'error' => 'Your message could not be sent just now. Please email me directly at ' . MAIL_TO . '.',
@@ -209,7 +210,9 @@ function load_smtp_config(): array
                 'open_basedir' => ini_get('open_basedir') !== '' && ini_get('open_basedir') !== false,
                 'home_readable' => @is_readable($home),
                 'home_has_public_html' => @is_dir($home . '/public_html'),
-                'smtp_files_in_home' => array_map('basename', $seen),
+                'home_entries' => count($all),
+                'matching_names_in_home' => $seen,
+                'php_files_in_home' => count(array_filter($all, fn($n) => preg_match('/\\.php$/i', $n) === 1)),
             ],
         ]);
     }
