@@ -15,7 +15,7 @@
   </script>
 
   <!-- Google Analytics 4 and interaction tracking -->
-  <script src="assets/js/analytics.js?v=1"></script>
+  <script src="assets/js/analytics.js?v=3"></script>
 
   <meta content="Pratik Butani is an engineering leader and product builder from Ahmedabad, with 13+ years of shipping software across Android, Flutter and product." name="description">
   <meta content="Pratik Butani, engineering leader, product builder, Flutter, Android, mobile architecture, product manager, AI-assisted development, GDG Cloud Rajkot, Ahmedabad" name="keywords">
@@ -60,7 +60,7 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css?v=19" rel="stylesheet">
+  <link href="assets/css/style.css?v=21" rel="stylesheet">
   
   <!-- Structured Data / JSON-LD -->
   <script type="application/ld+json">
@@ -618,7 +618,7 @@
           <h3>Building something that needs to scale?</h3>
           <p>I help teams make the calls that are hard to undo: architecture, delivery plans and what to build next.</p>
           <div class="mt-4">
-            <a href="mailto:pratik13butani@gmail.com?subject=Inquiry regarding Product Engineering / Mobile Strategy" class="btn-premium btn-primary-premium">Get in Touch <i class="bx bx-right-arrow-alt"></i></a>
+            <a href="#enquiry" class="btn-premium btn-primary-premium" role="button" data-bs-toggle="modal" data-bs-target="#enquiryModal">Get in Touch <i class="bx bx-right-arrow-alt"></i></a>
           </div>
         </div>
       </div>
@@ -1158,7 +1158,7 @@
 
         <div class="section-title">
           <h2>Let's Talk</h2>
-          <p>Have a product, a team or a talk in mind? Pick a channel. I reply to every message.</p>
+          <p>Have a product, a team or a talk in mind? Pick a channel. I read every message and reply personally.</p>
         </div>
 
         <div class="contact-container text-center">
@@ -1180,11 +1180,11 @@
               </a>
             </div>
             <div class="col-lg-3 col-md-6">
-              <a href="mailto:pratik13butani@gmail.com?subject=Detailed Project Proposal / Partnership Inquiry" class="contact-card">
-                <i class="bx bx-envelope"></i>
-                <h4>Email</h4>
-                <p>For longer messages and project details</p>
-                <span class="contact-btn">Send Email <i class="bx bx-right-arrow-alt"></i></span>
+              <a href="#enquiry" class="contact-card" role="button" data-bs-toggle="modal" data-bs-target="#enquiryModal">
+                <i class="bx bx-message-square-detail"></i>
+                <h4>Send a Message</h4>
+                <p>For projects, roles and longer questions</p>
+                <span class="contact-btn">Write to Me <i class="bx bx-right-arrow-alt"></i></span>
               </a>
             </div>
             <div class="col-lg-3 col-md-6">
@@ -1224,6 +1224,92 @@
   </footer><!-- End Footer -->
 
   <div id="preloader"></div>
+  <!-- ======= Enquiry pop-up ======= -->
+  <div class="modal fade enquiry-modal" id="enquiryModal" tabindex="-1" aria-labelledby="enquiryModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <h3 class="modal-title" id="enquiryModalTitle">Send me a message</h3>
+            <p class="modal-subtitle">Tell me what you are working on. I read every message and reply personally.</p>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="enquiry-form" class="enquiry-form" action="forms/enquiry.php" method="post" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="enq-name" class="form-label">Your name</label>
+                <input type="text" id="enq-name" name="name" class="form-control" autocomplete="name" maxlength="80" required>
+              </div>
+              <div class="col-md-6">
+                <label for="enq-email" class="form-label">Email</label>
+                <input type="email" id="enq-email" name="email" class="form-control" autocomplete="email" maxlength="120" required>
+              </div>
+              <div class="col-md-4">
+                <label for="enq-company" class="form-label">Company <span class="optional">(optional)</span></label>
+                <input type="text" id="enq-company" name="company" class="form-control" autocomplete="organization" maxlength="120">
+              </div>
+              <div class="col-md-4">
+                <label for="enq-help" class="form-label">Help with</label>
+                <select id="enq-help" name="help_type" class="form-select" required>
+                  <option value="" selected disabled>Choose one</option>
+                  <option value="leadership">Leadership role</option>
+                  <option value="advisory">Advisory or consulting</option>
+                  <option value="build">Product or app build</option>
+                  <option value="review">Architecture or code review</option>
+                  <option value="talk">Talk or workshop</option>
+                  <option value="mentoring">Mentoring</option>
+                  <option value="other">Something else</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="enq-timeline" class="form-label">Timeline <span class="optional">(optional)</span></label>
+                <select id="enq-timeline" name="timeline" class="form-select">
+                  <option value="" selected>Not sure yet</option>
+                  <option value="asap">As soon as possible</option>
+                  <option value="1-3-months">In the next 1 to 3 months</option>
+                  <option value="later">Later than 3 months</option>
+                  <option value="exploring">Just exploring</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label for="enq-message" class="form-label">Message</label>
+                <textarea id="enq-message" name="message" class="form-control" rows="5" minlength="20" maxlength="4000" placeholder="What are you building, where are you stuck, and what would a good outcome look like?" required></textarea>
+              </div>
+
+              <!-- Hidden from people; bots that fill it are ignored -->
+              <div class="enq-hp" aria-hidden="true">
+                <label for="enq-website">Website</label>
+                <input type="text" id="enq-website" name="website" tabindex="-1" autocomplete="off">
+              </div>
+
+              <div class="col-md-6">
+                <label for="enq-captcha" class="form-label">Quick check: <span id="enq-captcha-q">loading…</span></label>
+                <div class="captcha-row">
+                  <input type="text" id="enq-captcha" name="captcha" class="form-control" inputmode="numeric" autocomplete="off" maxlength="4" required>
+                  <button type="button" id="enq-captcha-new" class="captcha-refresh" title="New question" aria-label="Get a new question"><i class="bx bx-refresh"></i></button>
+                </div>
+              </div>
+              <div class="col-md-6 d-flex align-items-end">
+                <button type="submit" class="btn-premium btn-primary-premium w-100 justify-content-center" id="enq-submit">Send message <i class="bx bx-send"></i></button>
+              </div>
+            </div>
+
+            <div id="enq-status" class="enq-status" role="status" aria-live="polite"></div>
+            <p class="enq-note">Your details are only used to reply to you.</p>
+          </form>
+
+          <div id="enquiry-fallback" class="enquiry-fallback text-center" hidden>
+            <p class="mb-3">The form works on <a href="https://pratikbutani.com/#enquiry">pratikbutani.com</a>. From here, email me directly.</p>
+            <a href="mailto:pratik13butani@gmail.com?subject=Enquiry from your website" class="btn-premium btn-primary-premium">Email me <i class="bx bx-envelope"></i></a>
+          </div>
+          <p class="enq-direct">Prefer email? Write to <a href="mailto:pratik13butani@gmail.com?subject=Enquiry from your website">pratik13butani@gmail.com</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
@@ -1231,7 +1317,6 @@
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/purecounter/purecounter.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/typed.js/typed.min.js"></script>
@@ -1239,6 +1324,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js?v=2"></script>
+  <script src="assets/js/enquiry.js?v=4"></script>
 
 </body>
 

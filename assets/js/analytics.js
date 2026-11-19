@@ -30,6 +30,9 @@
     if (!isLive && window.console) console.info('[GA event]', name, params || {});
   }
 
+  // Other scripts on the page (such as the enquiry form) report events through this.
+  window.pbTrack = track;
+
   function clean(text) {
     return (text || '').replace(/\s+/g, ' ').trim().slice(0, 100);
   }
@@ -84,6 +87,9 @@
       track('theme_toggle', { theme: current === 'dark' ? 'light' : 'dark' });
       return;
     }
+
+    // Pop-up triggers are tracked by the pop-up itself (enquiry_open).
+    if (el.hasAttribute('data-bs-toggle')) return;
 
     if (el.tagName !== 'A') return;
     var href = el.getAttribute('href') || '';
