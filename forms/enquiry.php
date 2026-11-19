@@ -182,16 +182,30 @@ function post(string $key): string
  * so the mailbox password is never in the repository or reachable from the web.
  * The file returns an array: host, port, user, pass, from.
  */
-function load_smtp_config(): ?array
+function load_smtp_config(): array
 {
+    // forms/ -> public_html -> home folder
+    $candidates = [dirname(__DIR__, 2) . '/enquiry-smtp.php'];
     $docRoot = rtrim($_SERVER['DOCUMENT_ROOT'] ?? '', '/');
-    $file = dirname($docRoot !== '' ? $docRoot : __DIR__ . '/..') . '/enquiry-smtp.php';
-    if (!is_file($file)) {
-        return null;
+    if ($docRoot !== '') {
+        $candidates[] = dirname($docRoot) . '/enquiry-smtp.php';
+    }
+    $file = null;
+    foreach ($candidates as $candidate) {
+        if (is_file($candidate)) {
+            $file = $candidate;
+            break;
+        }
+    }
+    if ($file === null) {
+        send_failed('smtp_config_missing');
+    }
+    if (!is_readable($file)) {
+        send_failed('smtp_config_unreadable');
     }
     $config = include $file;
     if (!is_array($config) || empty($config['user']) || empty($config['pass'])) {
-        return null;
+        send_failed('smtp_config_invalid');
     }
     return [
         'host' => (string) ($config['host'] ?? '127.0.0.1'),
@@ -384,9 +398,6 @@ $encodedSubject = function_exists('mb_encode_mimeheader')
     : '=?UTF-8?B?' . base64_encode($subject) . '?=';
 
 $smtp = load_smtp_config();
-if ($smtp === null) {
-    send_failed('smtp_not_configured');
-}
 
 $headers = [
     'Date: ' . date('r'),
