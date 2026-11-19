@@ -5,6 +5,7 @@
  * GET  ?action=captcha  -> issues a new arithmetic question, kept in the session
  * POST                  -> validates the enquiry and emails it
  *
+ * Sends through the site's own cPanel mailbox over SMTP (PHP mail() is disabled on this host).
  * No database and no outside services. Spam protection:
  * captcha, hidden honeypot field, minimum fill time, same-site check and a per-IP rate limit.
  * Every response is JSON.
@@ -13,7 +14,6 @@
 declare(strict_types=1);
 
 const MAIL_TO        = 'pratik13butani@gmail.com';
-const MAIL_FROM      = 'no-reply@pratikbutani.com';
 const MAIL_FROM_NAME = 'pratikbutani.com';
 const MIN_FILL_SECS  = 4;        // humans need longer than this to fill the form
 const MAX_FORM_AGE   = 7200;     // captcha expires after 2 hours
@@ -177,6 +177,115 @@ function post(string $key): string
     return is_string($value) ? $value : '';
 }
 
+/**
+ * SMTP settings live outside the website folder (one level above public_html),
+ * so the mailbox password is never in the repository or reachable from the web.
+ * The file returns an array: host, port, user, pass, from.
+ */
+function load_smtp_config(): ?array
+{
+    $docRoot = rtrim($_SERVER['DOCUMENT_ROOT'] ?? '', '/');
+    $file = dirname($docRoot !== '' ? $docRoot : __DIR__ . '/..') . '/enquiry-smtp.php';
+    if (!is_file($file)) {
+        return null;
+    }
+    $config = include $file;
+    if (!is_array($config) || empty($config['user']) || empty($config['pass'])) {
+        return null;
+    }
+    return [
+        'host' => (string) ($config['host'] ?? '127.0.0.1'),
+        'port' => (int) ($config['port'] ?? 465),
+        'user' => (string) $config['user'],
+        'pass' => (string) $config['pass'],
+        'from' => (string) ($config['from'] ?? $config['user']),
+    ];
+}
+
+function send_failed(string $code): void
+{
+    respond(500, [
+        'ok'    => false,
+        'error' => 'Your message could not be sent just now. Please email me directly at ' . MAIL_TO . '.',
+        'code'  => $code,
+    ]);
+}
+
+/** Reads one SMTP reply (which may span several lines) and returns its status code. */
+function smtp_read($socket): int
+{
+    $code = 0;
+    while (($line = fgets($socket, 1024)) !== false) {
+        $code = (int) substr($line, 0, 3);
+        if (strlen($line) < 4 || $line[3] !== '-') {
+            break;
+        }
+    }
+    return $code;
+}
+
+function smtp_cmd($socket, string $command, array $expect): bool
+{
+    fwrite($socket, $command . "\r\n");
+    return in_array(smtp_read($socket), $expect, true);
+}
+
+/**
+ * Sends one plain-text message through the cPanel mail server.
+ * Returns null on success, or a short error code (no server text is exposed).
+ */
+function smtp_send(array $c, string $to, string $headers, string $body): ?string
+{
+    $local = in_array($c['host'], ['127.0.0.1', 'localhost'], true);
+    $context = stream_context_create(['ssl' => [
+        // The certificate on the loopback address is issued for the hostname, not 127.0.0.1.
+        'verify_peer'      => !$local,
+        'verify_peer_name' => !$local,
+    ]]);
+    $scheme = $c['port'] === 465 ? 'ssl://' : 'tcp://';
+    $socket = @stream_socket_client($scheme . $c['host'] . ':' . $c['port'], $errno, $errstr, 15, STREAM_CLIENT_CONNECT, $context);
+    if (!$socket) {
+        return 'smtp_connect';
+    }
+    stream_set_timeout($socket, 15);
+
+    if (smtp_read($socket) !== 220) {
+        return 'smtp_greeting';
+    }
+    if (!smtp_cmd($socket, 'EHLO pratikbutani.com', [250])) {
+        return 'smtp_ehlo';
+    }
+    if ($c['port'] === 587) {
+        if (!smtp_cmd($socket, 'STARTTLS', [220])
+            || !stream_socket_enable_crypto($socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT)
+            || !smtp_cmd($socket, 'EHLO pratikbutani.com', [250])) {
+            return 'smtp_tls';
+        }
+    }
+    if (!smtp_cmd($socket, 'AUTH LOGIN', [334])
+        || !smtp_cmd($socket, base64_encode($c['user']), [334])
+        || !smtp_cmd($socket, base64_encode($c['pass']), [235])) {
+        return 'smtp_auth';
+    }
+    if (!smtp_cmd($socket, 'MAIL FROM:<' . $c['from'] . '>', [250])) {
+        return 'smtp_from';
+    }
+    if (!smtp_cmd($socket, 'RCPT TO:<' . $to . '>', [250, 251])) {
+        return 'smtp_rcpt';
+    }
+    if (!smtp_cmd($socket, 'DATA', [354])) {
+        return 'smtp_data';
+    }
+    // Lines starting with a dot get an extra dot, as SMTP requires.
+    $data = $headers . "\r\n\r\n" . preg_replace('/^\./m', '..', $body);
+    if (!smtp_cmd($socket, $data . "\r\n.", [250])) {
+        return 'smtp_rejected';
+    }
+    smtp_cmd($socket, 'QUIT', [221]);
+    fclose($socket);
+    return null;
+}
+
 // ---------------------------------------------------------------------------
 
 start_session();
@@ -267,32 +376,34 @@ $lines = [
     '--',
     'Sent ' . gmdate('Y-m-d H:i') . ' UTC. Reply to this email to answer ' . $name . ' directly.',
 ];
-$body = implode("\r\n", $lines);
+// SMTP needs CRLF line endings throughout, including inside the visitor's message.
+$body = str_replace("\n", "\r\n", implode("\n", $lines));
+
+$encodedSubject = function_exists('mb_encode_mimeheader')
+    ? mb_encode_mimeheader($subject, 'UTF-8', 'B', "\r\n")
+    : '=?UTF-8?B?' . base64_encode($subject) . '?=';
+
+$smtp = load_smtp_config();
+if ($smtp === null) {
+    send_failed('smtp_not_configured');
+}
 
 $headers = [
-    'From: ' . MAIL_FROM_NAME . ' <' . MAIL_FROM . '>',
-    'Reply-To: ' . $email,
+    'Date: ' . date('r'),
+    'From: ' . MAIL_FROM_NAME . ' <' . $smtp['from'] . '>',
+    'To: <' . MAIL_TO . '>',
+    'Reply-To: <' . $email . '>',
+    'Subject: ' . $encodedSubject,
+    'Message-ID: <' . bin2hex(random_bytes(12)) . '@pratikbutani.com>',
     'MIME-Version: 1.0',
     'Content-Type: text/plain; charset=UTF-8',
     'Content-Transfer-Encoding: 8bit',
     'X-Mailer: pratikbutani.com enquiry form',
 ];
 
-if (!function_exists('mail')) {
-    respond(500, [
-        'ok'    => false,
-        'error' => 'Your message could not be sent just now. Please email me directly at ' . MAIL_TO . '.',
-        'code'  => 'mail_function_disabled',
-    ]);
-}
-
-$encodedSubject = function_exists('mb_encode_mimeheader')
-    ? mb_encode_mimeheader($subject, 'UTF-8', 'B', "\r\n")
-    : '=?UTF-8?B?' . base64_encode($subject) . '?=';
-$sent = mail(MAIL_TO, $encodedSubject, $body, implode("\r\n", $headers), '-f' . MAIL_FROM);
-
-if (!$sent) {
-    fail(500, 'Your message could not be sent just now. Please email me directly at ' . MAIL_TO . '.');
+$error = smtp_send($smtp, MAIL_TO, implode("\r\n", $headers), $body);
+if ($error !== null) {
+    send_failed($error);
 }
 
 record_send(recent_sends());
