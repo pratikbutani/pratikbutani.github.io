@@ -198,7 +198,20 @@ function load_smtp_config(): array
         }
     }
     if ($file === null) {
-        send_failed('smtp_config_missing');
+        // Temporary diagnosis: file names only (never paths or contents).
+        $home = dirname(__DIR__, 2);
+        $seen = @glob($home . '/*smtp*') ?: [];
+        respond(500, [
+            'ok'    => false,
+            'error' => 'Your message could not be sent just now. Please email me directly at ' . MAIL_TO . '.',
+            'code'  => 'smtp_config_missing',
+            'diag'  => [
+                'open_basedir' => ini_get('open_basedir') !== '' && ini_get('open_basedir') !== false,
+                'home_readable' => @is_readable($home),
+                'home_has_public_html' => @is_dir($home . '/public_html'),
+                'smtp_files_in_home' => array_map('basename', $seen),
+            ],
+        ]);
     }
     if (!is_readable($file)) {
         send_failed('smtp_config_unreadable');
