@@ -20,6 +20,7 @@
   --premium-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
   --glass-bg: rgba(255, 255, 255, 0.8);
   --hero-fade-rgb: 255, 255, 255;
+  --section-line: rgba(15, 23, 42, 0.07);
   --glass-blur: blur(12px);
   --radius-lg: 24px;
   --radius-md: 16px;
@@ -36,6 +37,7 @@
   --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   --glass-bg: rgba(15, 23, 42, 0.8);
   --hero-fade-rgb: 15, 23, 42;
+  --section-line: rgba(148, 163, 184, 0.14);
   --glass-blur: blur(16px);
 }
 
@@ -359,8 +361,13 @@ a:hover {
 /*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
-section { padding: 120px 0; }
-.section-title { text-align: center; padding-bottom: 70px; }
+section { padding: 72px 0; }
+.section-title { text-align: center; padding-bottom: 44px; }
+
+/* Thin line between sections so neighbours never blend */
+#main > section + section { border-top: 1px solid var(--section-line); }
+/* The call-to-action strip closes the Work section, so no line above it */
+#main > section.cta-strip { border-top: 0; }
 .section-title h2 {
   font-size: 42px;
   margin-bottom: 20px;
@@ -469,7 +476,7 @@ section { padding: 120px 0; }
 .ai-section {
   background: #0f172a;
   color: #f8fafc;
-  padding: 120px 0;
+  padding: 72px 0;
 }
 
 .ai-section .section-title h2 { color: #fff; }
@@ -753,9 +760,8 @@ section { padding: 120px 0; }
 .cta-strip p {
   color: var(--text-main);
   font-size: 20px;
-  max-width: none;
+  max-width: 760px;
   margin: 0 auto;
-  white-space: nowrap;
 }
 
 @media (max-width: 768px) {
@@ -948,12 +954,45 @@ section { padding: 120px 0; }
 .testimonial-subhead { font-size: 18px; color: var(--text-heading); margin: 16px 0 20px; text-align: center; }
 .testimonial-card-sm blockquote { font-size: 16px; }
 
-/* Hero text on the dark photo layer, same in light and dark mode */
-section#hero .hero-eyebrow { color: #7cc4ff; }
-section#hero h1 { color: #fff; }
-section#hero p { color: rgba(255, 255, 255, 0.86); }
-section#hero .premium-gradient-text { background: linear-gradient(135deg, #7cc4ff 0%, #4da3ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-section#hero .founder-focus { color: #fff; background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(6px); }
+/* Hero, light theme: bright wash over the photo with dark text */
+#hero { background: #f8fafc; }
+#hero::after { background: linear-gradient(90deg, rgba(248, 250, 252, 0.96) 0%, rgba(248, 250, 252, 0.88) 48%, rgba(248, 250, 252, 0.3) 100%); }
+section#hero .hero-eyebrow { color: var(--primary); }
+section#hero h1 { color: #0f172a; }
+section#hero p { color: #334155; }
+section#hero .founder-focus { color: #0f172a; background: rgba(255, 255, 255, 0.75); box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08); backdrop-filter: blur(6px); }
+
+@media (max-width: 991px) {
+  #hero::after { background: rgba(248, 250, 252, 0.86); }
+}
+
+/* Hero, dark theme: dark layer over the photo with light text */
+[data-theme="dark"] #hero { background: #0b0f17; }
+[data-theme="dark"] #hero::after { background: linear-gradient(90deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.72) 50%, rgba(0, 0, 0, 0.4) 100%); }
+[data-theme="dark"] section#hero .hero-eyebrow { color: #7cc4ff; }
+[data-theme="dark"] section#hero h1 { color: #fff; }
+[data-theme="dark"] section#hero p { color: rgba(255, 255, 255, 0.86); }
+[data-theme="dark"] section#hero .premium-gradient-text { background: linear-gradient(135deg, #7cc4ff 0%, #4da3ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+[data-theme="dark"] section#hero .founder-focus { color: #fff; background: rgba(255, 255, 255, 0.12); box-shadow: none; }
+
+@media (max-width: 991px) {
+  [data-theme="dark"] #hero::after { background: rgba(0, 0, 0, 0.68); }
+}
+
+/* About cards: no empty space under the text */
+.about-card p:last-child { margin-bottom: 0; }
+
+/* About intro: compact cards, photo matches the height of the text column on desktop */
+#about .content .about-card { padding: 24px 28px; }
+#about .content .about-card i { font-size: 32px; margin-bottom: 12px; }
+#about .content .about-card h4 { font-size: 20px; margin-bottom: 8px; }
+#about .content .about-card p { font-size: 15px; line-height: 1.6; }
+@media (min-width: 992px) {
+  #about .about-photo { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+}
+
+/* Dark theme: the AI band gets its own, deeper shade so it stands apart from its neighbours */
+[data-theme="dark"] .ai-section { background: #020617; }
 
 /*--------------------------------------------------------------
 # Phone fixes
@@ -971,10 +1010,10 @@ section#hero .founder-focus { color: #fff; background: rgba(255, 255, 255, 0.12)
 }
 
 @media (max-width: 767px) {
-  section { padding: 80px 0; }
+  section { padding: 56px 0; }
   section#hero .hero-eyebrow { font-size: 12px; letter-spacing: 0.08em; }
-  .ai-section { padding: 80px 0; }
-  .section-title { padding-bottom: 40px; }
+  .ai-section { padding: 56px 0; }
+  .section-title { padding-bottom: 32px; }
   .section-title h2 { font-size: 34px; }
   .section-title p { font-size: 18px; }
   .about-card, .case-study-card, .focus-area-card { padding: 28px 22px; }
@@ -991,3 +1030,8 @@ section#hero .founder-focus { color: #fff; background: rgba(255, 255, 255, 0.12)
   .testimonial-card { padding: 24px 20px; }
   .testimonial-card blockquote { font-size: 17px; }
 }
+
+/* Icon tile for case studies under NDA, in place of a real app logo */
+.app-icon-placeholder { display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 28px; }
+.app-icon-audio { background: linear-gradient(135deg, #f97316 0%, #db2777 100%); }
+.app-icon-pharma { background: linear-gradient(135deg, #14b8a6 0%, #0563bb 100%); }

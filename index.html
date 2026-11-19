@@ -14,6 +14,9 @@
     })();
   </script>
 
+  <!-- Google Analytics 4 and interaction tracking -->
+  <script src="assets/js/analytics.js?v=1"></script>
+
   <meta content="Pratik Butani is an engineering leader and product builder from Ahmedabad, with 13+ years of shipping software across Android, Flutter and product." name="description">
   <meta content="Pratik Butani, engineering leader, product builder, Flutter, Android, mobile architecture, product manager, AI-assisted development, GDG Cloud Rajkot, Ahmedabad" name="keywords">
   
@@ -57,7 +60,7 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css?v=15" rel="stylesheet">
+  <link href="assets/css/style.css?v=19" rel="stylesheet">
   
   <!-- Structured Data / JSON-LD -->
   <script type="application/ld+json">
@@ -287,7 +290,7 @@
 
         <div class="row">
           <div class="col-lg-4">
-            <img src="assets/img/profile-img.jpg?v=3" class="img-fluid rounded-4 shadow-lg" alt="Pratik Butani" width="1000" height="1000">
+            <img src="assets/img/profile-img.jpg?v=3" class="img-fluid rounded-4 shadow-lg about-photo" alt="Pratik Butani" width="1000" height="1000">
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content">
             <h3>From a first Android app to Head of Mobile</h3>
@@ -296,15 +299,15 @@
             </p>
 
             <div class="row mt-4">
-              <div class="col-md-6">
-                <div class="about-card mb-4">
+              <div class="col-md-6 mb-4 mb-md-0">
+                <div class="about-card">
                   <i class="bx bx-user-voice"></i>
                   <h4>Where I add value</h4>
                   <p>Founders taking a product from idea to launch, and teams whose app has outgrown its first version.</p>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="about-card mb-4">
+              <div class="col-md-6 mb-4 mb-md-0">
+                <div class="about-card">
                   <i class="bx bx-extension"></i>
                   <h4>Problems I'm brought in to solve</h4>
                   <p>Apps that feel slow, codebases nobody wants to touch, and delivery that keeps slipping.</p>
@@ -491,7 +494,10 @@
                 <div class="case-study-header">
                   <span class="case-study-tag">Media | Entertainment</span>
                 </div>
-                <h4>Live Audio Broadcasting</h4>
+                <div class="d-flex align-items-center mb-3">
+                  <span class="app-icon app-icon-placeholder app-icon-audio me-3" aria-hidden="true"><i class="bx bx-broadcast"></i></span>
+                  <h4 class="mb-0">Live Audio Broadcasting</h4>
+                </div>
                 <p class="problem"><strong>The problem:</strong> DJs, musicians and talk hosts wanted to go live in proper audio quality, straight to their followers.</p>
                 <p><strong>The hard part:</strong> Connecting the app to the broadcaster's hardware over Bluetooth and WiFi, and keeping live audio stable with a custom audio library.</p>
                 <div class="case-study-meta">
@@ -516,7 +522,10 @@
                 <div class="case-study-header">
                   <span class="case-study-tag">Pharma | Enterprise</span>
                 </div>
-                <h4>Pharma Ecosystem</h4>
+                <div class="d-flex align-items-center mb-3">
+                  <span class="app-icon app-icon-placeholder app-icon-pharma me-3" aria-hidden="true"><i class="bx bxs-capsule"></i></span>
+                  <h4 class="mb-0">Pharma Ecosystem</h4>
+                </div>
                 <p class="problem"><strong>The problem:</strong> Distributors, retailers and field salesmen were juggling phone calls, paper orders and a separate ERP.</p>
                 <p><strong>The hard part:</strong> Order booking that works without network and syncs with the ERP once the phone is back online.</p>
                 <div class="case-study-meta">
@@ -787,7 +796,7 @@
 
     <!-- ======= Rapid MVPs Section ======= -->
     <!-- Source of truth: ../web-apps (vibe-coded web apps). Add one card per app. -->
-    <section id="rapid-mvps" class="portfolio">
+    <section id="rapid-mvps" class="portfolio section-bg full-bleed">
       <div class="container" data-aos="fade-up">
         <div class="section-title">
           <h2>Experiments</h2>
@@ -942,7 +951,7 @@
     </section>
 
     <!-- ======= Community & Authority Section ======= -->
-    <section id="community" class="community section-bg full-bleed">
+    <section id="community" class="community full-bleed">
       <div class="container" data-aos="fade-up">
         <div class="section-title">
           <h2>Community</h2>
@@ -1051,7 +1060,7 @@
 
     <!-- ======= Testimonials Section ======= -->
     <!-- Quotes from LinkedIn recommendations, trimmed. No employer names. -->
-    <section id="testimonials" class="portfolio">
+    <section id="testimonials" class="portfolio section-bg full-bleed">
       <div class="container" data-aos="fade-up">
         <div class="section-title">
           <h2>In Their Words</h2>
