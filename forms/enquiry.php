@@ -39,6 +39,22 @@ const TIMELINES = [
     'exploring'  => 'Just exploring',
 ];
 
+// Any fatal error still gets a JSON reply, with a short code for diagnosis (no error text is exposed).
+register_shutdown_function(function (): void {
+    $e = error_get_last();
+    if ($e !== null && in_array($e['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR], true)) {
+        if (!headers_sent()) {
+            http_response_code(500);
+            header('Content-Type: application/json; charset=utf-8');
+        }
+        echo json_encode([
+            'ok'    => false,
+            'error' => 'Your message could not be sent just now. Please email me directly at ' . MAIL_TO . '.',
+            'code'  => 'fatal_' . $e['type'] . '_line_' . $e['line'],
+        ]);
+    }
+});
+
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store, max-age=0');
 header('X-Content-Type-Options: nosniff');
@@ -262,7 +278,17 @@ $headers = [
     'X-Mailer: pratikbutani.com enquiry form',
 ];
 
-$encodedSubject = mb_encode_mimeheader($subject, 'UTF-8', 'B', "\r\n");
+if (!function_exists('mail')) {
+    respond(500, [
+        'ok'    => false,
+        'error' => 'Your message could not be sent just now. Please email me directly at ' . MAIL_TO . '.',
+        'code'  => 'mail_function_disabled',
+    ]);
+}
+
+$encodedSubject = function_exists('mb_encode_mimeheader')
+    ? mb_encode_mimeheader($subject, 'UTF-8', 'B', "\r\n")
+    : '=?UTF-8?B?' . base64_encode($subject) . '?=';
 $sent = mail(MAIL_TO, $encodedSubject, $body, implode("\r\n", $headers), '-f' . MAIL_FROM);
 
 if (!$sent) {
